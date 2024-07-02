@@ -1,0 +1,71 @@
+//NUMBER GAME (Task -1)
+
+
+
+import java.util.Scanner;
+import java.util.Random;
+public class RandomNumberGenerator
+{
+	public static void main(String ar[])
+	{
+	Scanner scanner = new Scanner(System.in);
+	Random random = new Random();
+	
+	int roundsWon = 0;
+	int totalAttempts = 0;
+	boolean playAgain = true;
+	while(playAgain)
+	{
+		//Generate a random number between 0 (inclusive) and 101 (exclusive)
+		
+	int randomNumber = random.nextInt(101);
+	int attempts = 0;
+	boolean hasWon = false;
+	System.out.println("A new round has started! you have 10 attempts to guess the number (0 to 100).");
+	
+	//limit the number of attempts to 10
+	
+	while(attempts <10)
+	{
+		System.out.println("Enter your guess :");
+		int userGuess = scanner.nextInt();
+		attempts++;
+		totalAttempts++;
+		
+		
+		if(userGuess  < randomNumber)
+		{
+			System.out.println("Too low ! Try again.");
+		}
+		else if (userGuess > randomNumber)
+		{
+			System.out.println("Too high! Try again.");
+		}
+		else
+		{
+			System.out.println("congratulations ! your guess is correct.");
+			hasWon = true ;
+			roundsWon++;
+			break;
+		}
+	}
+		
+		if(!hasWon)
+		{
+			System.out.println("you've used all your attempts! The correct number was:" +randomNumber);
+		}
+		//Ask the user if they want to play again 
+		
+		System.out.println("Do you want to play another round ?(yes/no):");
+		String response = scanner.next();
+		playAgain = response.equalsIgnoreCase("yes");
+	}
+	
+	//Display the user's score
+	System.out.println("Game over! you won "+roundsWon+"rounds.");
+	System.out.println("Total attempts made :"+totalAttempts);
+	
+	//close the scanner
+	scanner.close();
+	}
+}
